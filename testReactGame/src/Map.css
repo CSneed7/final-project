@@ -1,0 +1,74 @@
+.mapWrapper {
+    position: relative;
+    margin: 40px auto;
+}
+
+.map {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: #72ad72;
+    background-image: url('images/grass.png');
+}
+
+.tile {
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.tree {
+    background-image: url('images/tree2.png');
+}
+
+.rock {
+    background-image: url('images/boulder.png');
+}
+
+.snake {
+    background-image: url('images/FACEWORM.gif');
+}
+.snake.left {
+    transform: scale(1, 1);
+}
+.snake.right {
+    transform: scale(-1, 1);
+}
+
+.player {
+    background-image: url('images/player2.png');
+}
+.player.left {
+    transform: scale(-1, 1);
+}
+.player.right {
+    transform: scale(1, 1);
+}
+
+.rathalos {
+    background-image: url('images/rathalos.gif');
+}
+.rathalos.left {
+    transform: scale(-1, 1);
+}
+.rathalos.right {
+    transform: scale(1, 1);
+}
+.diamond {
+    background-image: url('images/diamond.gif');
+}
+.coin {
+    background-image: url('images/Spinningcoin.gif');
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.portal {
+    background-image: url('images/cave.png');
+}
