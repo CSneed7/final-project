@@ -236,6 +236,8 @@ class App extends Component {
       currentLevel: changeLevel,
       tiles: [],
       gameTimer: false,
+      // monsterSpeed: 700, Even if the setTimeout didn't work, why is it if we changed their state to their original speed, it still 
+      // increases? Is it because the setTimeout is basically being doubled or called multiple times?
     }, () => this.init())
   }
 
