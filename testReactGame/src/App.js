@@ -2,23 +2,26 @@ import React, { Component } from 'react';
 import { tiles, mapClass } from './levels/level_1';
 import { tiles2, mapClass2 } from './levels/level_2';
 import { tiles3 } from './levels/level_3';
-import Map from './Map.js';
-import Snake from './Snake.js';
+import Map from './map/Map';
+import Snake from './monsters/Snake';
 import Player from './Player.js';
 import './App.css';
 import './Map.css';
-import Rathalos from './Ratahlos';
-import CaveDrag from './CaveDragon';
+import Rathalos from './monsters/Ratahlos';
+import CaveDrag from './monsters/CaveDragon';
+
 
 class App extends Component {
   state = {
     tiles: [],
     monsters: [],
-    monsterSpeed: 700,
+    monsterSpeed: 900,
     gameTimer: true,
     score: 0,
     currentLevel: 1,
-    mapClass: false
+    mapClass: false,
+    monsterTimer: 0,
+    timer: 60,
   }
 
   componentDidMount() {
@@ -205,15 +208,27 @@ class App extends Component {
 
     const monsterTimer = setTimeout(this.moveMonsters, this.state.monsterSpeed);
 
+    const levelTimer = setInterval(() => {
+      let currentTime = this.state.timer;
+      if(this.state.timer === 0){
+      return this.timesUp();
+      }
+      this.setState({
+        timer: currentTime -1
+      })
+    }, 1000);
+
     this.setState({
+      timer: 60,
       tiles: newTiles,
       monsters,
       gameTimer: true,
       player,
       mapClass: newMapClass,
-      monsterTimer
+      levelTimer
     });
   }
+  
   collectCoin = () => {
     let score = this.state.score + 100;
     console.log(score);
@@ -229,6 +244,11 @@ class App extends Component {
     })
   }
   changeLevel = () => {
+    window.clearInterval(this.state.levelTimer)
+    let difficultyUp;
+    if (this.state.monsterSpeed > 200) {
+      difficultyUp = this.state.monsterSpeed - 100;
+    }
     let changeLevel = this.state.currentLevel + 1;
     console.log(this.state.monsterTimer);
     window.clearTimeout(this.state.monsterTimer);
@@ -236,6 +256,7 @@ class App extends Component {
       currentLevel: changeLevel,
       tiles: [],
       gameTimer: false,
+      monsterSpeed: difficultyUp
       // monsterSpeed: 700, Even if the setTimeout didn't work, why is it if we changed their state to their original speed, it still 
       // increases? Is it because the setTimeout is basically being doubled or called multiple times?
     }, () => this.init())
@@ -269,11 +290,15 @@ class App extends Component {
       monsters[i] = monster;
     });
 
-    if (this.state.gameTimer) setTimeout(this.moveMonsters, this.state.monsterSpeed);
+    let resetMonster;
+    if (this.state.gameTimer) {
+      resetMonster = setTimeout(this.moveMonsters, this.state.monsterSpeed)
+    };
 
     this.setState({
       tiles: newTiles,
       monsters: monsters,
+      monsterTimer: resetMonster
     });
   }
 
@@ -326,11 +351,42 @@ class App extends Component {
   }
 
   battle = () => {
-    alert("You're dead! Reset the game.");
+    let playerDied;
+    alert("You've died! Press Reset to play the level again.");
+    if (this.state.score > 0) {
+      playerDied = this.state.score - 500;
+      this.setState({
+        gameTimer: false,
+        score: playerDied,
+      });
+      if(this.state.score < 0){
+        playerDied = 0;
+        this.setState({
+          gameTimer: false,
+          score: playerDied
+        });
+      }
+      clearInterval(this.state.levelTimer)
+    }
+    else if (this.state.score <= 0){
+      playerDied = 0
+      this.setState({
+        gameTimer: false,
+        score: playerDied
+      });
+    }
+  }
 
-    this.setState({
-      gameTimer: false,
-    });
+  timesUp = () => {
+      window.clearInterval(this.state.levelTimer)
+      window.clearTimeout(this.state.monsterTimer);
+      alert("You've ran out of time! Better luck next time!")
+      this.setState({
+        gameTimer: false,
+        timer: 60,
+        score: 0,
+        currentLevel: 1,
+      }, this.init);
   }
 
   resetGame = () => {
@@ -361,10 +417,7 @@ class App extends Component {
     // console.log(this.state.tiles)
     return (
       <div className="App">
-        {this.state.tiles.length > 0 ? <Map tiles={this.state.tiles} mapClass={this.state.mapClass} /> : <div></div>}
-        <div className="controls">
-          <button onClick={this.resetGame} disabled={this.state.gameTimer}>Reset Game</button>
-        </div>
+        {this.state.tiles.length > 0 ? <Map tiles={this.state.tiles} mapClass={this.state.mapClass} score={this.state.score} resetGame={this.resetGame} gameTimer={this.state.gameTimer} timer={this.state.timer}/> : <div></div>}
       </div>
     );
   }
