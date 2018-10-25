@@ -1,0 +1,183 @@
+.mapWrapper {
+    position: relative;
+    margin: 40px auto;
+}
+
+.nav-wrapper {
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    top: -40px;
+    background-color: red;
+}
+
+.map {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+li {
+    display: inline;
+    padding: 10px;
+    margin-left: 0px;
+}
+
+a
+{
+  text-decoration:none;
+  color:black;
+}
+
+ul
+{
+  float:left;
+  width:100%;
+  padding: 0;
+  margin:0;
+  margin-left: 180px;
+  list-style-type:none;
+}
+
+.grassmap {
+    background-color: #72ad72;
+    background-image: url('../images/grass.png');
+}
+
+.cavemap {
+    background-color: #72ad72;
+    background-image: url('../images/cave.jpg');
+}
+
+.dungeonmap {
+    background-color: #72ad72;
+    background-image: url('../images/dungeon.jpg');
+}
+
+.tile {
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.tree {
+    background-image: url('../images/tree2.png');
+}
+
+.rock {
+    background-image: url('../images/boulder.png');
+}
+
+.snake {
+    background-image: url('../images/FACEWORM.gif');
+}
+.snake.left {
+    transform: scale(1, 1);
+}
+.snake.right {
+    transform: scale(-1, 1);
+}
+
+.player {
+    background-image: url('../images/player2.png');
+}
+.player.left {
+    transform: scale(-1, 1);
+}
+.player.right {
+    transform: scale(1, 1);
+}
+
+.rathalos {
+    background-image: url('../images/rathalos.gif');
+}
+.rathalos.left {
+    transform: scale(-1, 1);
+}
+.rathalos.right {
+    transform: scale(1, 1);
+}
+.diamond {
+    background-image: url('../images/diamond.gif');
+}
+.coin {
+    background-image: url('../images/Spinningcoin.gif');
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.cave {
+    background-image: url('../images/cave.png');
+}
+.stalagmite {
+    background-image: url('../images/stalagmite.png');
+}
+.topstalag {
+    background-image: url('../images/topstalag.png');
+}
+.caverock {
+    background-image: url('../images/caverock.png');
+}
+.cavehole {
+    background-image: url('../images/cavecont.png');
+}
+.cavedrag {
+    background-image: url('../images/cavedrag.gif');
+}
+.cavedrag.left {
+    transform: scale(-1, 1);
+}
+.cavedrag.right {
+    transform: scale(1, 1);
+}
+.caveladder {
+    background-image: url('../images/caveladder.png');
+}
+.caveexit{
+    background-image: url('../images/dungeon.png');
+}
+.vase{
+    background-image: url('../images/vase.png');
+}
+.barrel{
+    background-image: url('../images/barrel.png');
+}
+.portal{
+    background-image: url('../images/portal.gif');
+}
+.valk {
+    background-image: url('../images/finalboss.gif');
+}
+.valk.left {
+    transform: scale(1, 1);
+}
+.valk.right {
+    transform: scale(-1, 1);
+}
+.blacknight {
+    background-image: url('../images/dung2.gif');
+}
+.blacknight.left {
+    transform: scale(1, 1);
+}
+.blacknight.right {
+    transform: scale(-1, 1);
+}
+.skeleton {
+    background-image: url('../images/dung1.gif');
+}
+.skeleton.left {
+    transform: scale(1, 1);
+}
+.skeleton.right {
+    transform: scale(-1, 1);
+}
+.crate{
+    background-image: url('../images/crate.png');
+}

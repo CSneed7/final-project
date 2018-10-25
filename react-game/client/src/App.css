@@ -1,0 +1,163 @@
+
+.App {
+  text-align: center;
+}
+
+.Game {
+  text-align: center;
+}
+
+.controls button {
+  margin: 0 auto;
+}
+
+list-group-item {
+  line-height: 2.5;
+}
+
+body{
+  background-color: blue;
+  background-image: url("");
+  min-height: 500px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: 'Maven Pro', sans-serif;
+  background-image: url('./images/backdrop.gif');
+}
+
+.mainPage{
+  text-align: center;
+  position: relative;
+  margin-top: 10%;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 10px;
+}
+
+h1{
+  color: black;
+  /* font-weight: bolder; */
+  font-size: 400%;
+}
+
+/* signup and log in buttons */
+.button {
+  background-color: rgba(30, 92, 163, 0.596);
+  background-image: none;
+  border-image: linear-gradient(to right,  grey, grey);
+  border-image-slice: 1;
+  border-radius: 0;
+  border-style: solid;
+  border-width: 1px;
+  color: black;
+  display: inline-block;
+  font-size: 0.875rem;
+  line-height: 1;
+  padding: 1.25em 2em;
+  text-shadow: none;
+  transition-property: box-shadow, transform;
+  user-select: none;
+  vertical-align: top;
+  white-space: nowrap;
+  will-change: box-shadow, transform;
+  margin: 10px;
+}
+
+#signUp{
+  margin-left: 2%;
+  }
+  
+  a {
+    cursor: pointer;
+    text-decoration: none;
+    color: rgb(9, 11, 150);
+  }
+  
+  .button:hover {
+    box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.2);
+    transform: scale(1.02) translateY(-4px);
+    color:  black;
+  }
+  
+  .button:active {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+    transform: scale(0.98) translateY(-2px);
+  }
+  
+  .placeholder {
+    color:  darkgreen;
+  }
+  
+  a:hover{
+    color: whitesmoke;
+  }
+  
+  /* InputBox */
+  label{
+    color:  black;
+    font-size: 100%;
+  }
+  
+  p{
+    color: black;
+    font-size: 120%;
+    text-align: center;
+    font-weight: bold;
+  }
+  .form-control{
+    color: black;
+    background-color:  #070707;
+    }
+    
+    select{
+      color: rgb(18, 40, 141);
+      background-color:  black;
+    
+    }
+
+    .wasd{
+      width: 80px;
+      height: 80px;
+      display: inline-block;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-image: url('./images/wasd.png');
+    }
+
+    .arrowkeys{
+      width: 80px;
+      height: 80px;
+      display: inline-block;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-image: url('./images/arrow.png');
+    }
+    
+    input[type=username], input[type=password], input[type=text]{
+      color: black!important;
+      background-color:  #07070711!important;
+    }
+    
+    /* autofill background */
+    @-webkit-keyframes autofill {
+      to {
+          color: black;
+          background: transparent;
+      }
+    }
+    
+    @keyframes autofill {
+      to {
+          color: black;
+          background: transparent;
+      }
+    }
+    
+    input:-webkit-autofill {
+      -webkit-animation-name: autofill;
+      animation-name: autofill;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both
+    }
+    
