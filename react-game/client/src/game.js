@@ -23,7 +23,7 @@ class Game extends Component {
   state = {
     tiles: [],
     monsters: [],
-    monsterSpeed: 800,
+    monsterSpeed: 600,
     gameTimer: true,
     score: 0,
     currentLevel: 1,
