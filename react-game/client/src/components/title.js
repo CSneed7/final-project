@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
 import '../App.css';
 import API from '../api';
 
@@ -10,10 +10,16 @@ class Title extends Component {
     
     handleFormSubmit = event => {
         event.preventDefault();
-            API.Logout({username: this.state.username, password: this.state.password}).then(res => {
+            API.Logout().then(
+            this.setState({
+                formSubmitted: true
             })
+        )
     };
     render() {
+        if(this.state.formSubmitted){
+            return <Redirect to="/" />
+        }
         return (
             <div className="mainPage">
                 <h1>Welcome!</h1>

@@ -17,6 +17,7 @@ import Valk from './monsters/Valk';
 import BK from './monsters/Blackknight';
 import Skeleton from './monsters/Skeleton';
 import { tiles8 } from './levels/level_8';
+import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
 
 
 class Game extends Component {
@@ -30,6 +31,7 @@ class Game extends Component {
     mapClass: false,
     monsterTimer: 0,
     timer: 30,
+    gameComplete: false
   }
 
   baseState = this.state
@@ -394,6 +396,11 @@ class Game extends Component {
     }
     if (this.state.currentLevel === 8){
       alert("You won!!! Congrats noob!")
+      this.setState({
+        gameTimer: false,
+        gameComplete: true
+      })
+      return <Redirect to="/leaderboard" />
     }
     let changeLevel = this.state.currentLevel + 1;
     console.log(this.state.monsterTimer);
@@ -570,6 +577,9 @@ class Game extends Component {
 
   render() {
     // console.log(this.state.tiles)
+    if(this.state.gameComplete){
+      return <Redirect to="/leaderboard" />
+    }
     return (
       <div className="Game">
         {this.state.tiles.length > 0 ? <Map tiles={this.state.tiles} mapClass={this.state.mapClass} score={this.state.score} resetGame={this.resetGame} gameTimer={this.state.gameTimer} timer={this.state.timer} /> : <div></div>}
