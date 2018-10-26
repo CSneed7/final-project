@@ -49,8 +49,6 @@ module.exports = function (passport) {
 		// console.log(req.user);
 		const oldUser = req.body;
 		User.findOne({ username: oldUser.username }).then(data => {
-			console.log(data);
-			console.log(oldUser.password)
 			if (oldUser.password === data.password) {
 				res.json({
 					userId: req.user._id,

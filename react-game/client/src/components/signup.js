@@ -61,7 +61,7 @@ class Register extends Component {
             <div className="mainPage">
                 <div className="container">
                     <div className="jumbotron mt-4">
-                        <h1 className="display-4 text-center">Welcome!</h1>
+                        <h1 className="display-4 text-center">Create an account!</h1>
                         <p>Please provide a valid username and password.</p>
 
                         <form>

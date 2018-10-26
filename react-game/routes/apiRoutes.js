@@ -15,8 +15,13 @@ module.exports = function (passport) {
 		})(req, res, next);
 	})
 
-	router.get("/userscore", function(req, res){
-		db.User.find({ _id: req.body.user_id })
+	router.get("/userscore/:userId", function(req, res){
+		console.log(req.params.userId)
+		db.User.findOne({ _id: req.params.userId }).then(data => {
+			console.log(data.score)
+		})
 	})
+
+
 	return router;
 };

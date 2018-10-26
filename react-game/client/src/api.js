@@ -12,5 +12,8 @@ export default {
     },
     Logout: function(info){
         return axios.get("/auth/logout", info);
+    },
+    userScore: function(info){
+        return axios.get("/api/userscore/" + info);
     }
 }
