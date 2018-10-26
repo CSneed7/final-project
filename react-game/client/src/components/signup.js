@@ -29,8 +29,19 @@ class Register extends Component {
             console.log(this.state)
         }
         else {
-            alert("User created successfully.");
-            this.setState({ username: "", password: "", confirmPassword: "", formSubmitted: true });
+            API.signUp({username: this.state.username, password: this.state.password}).then(res => {
+                console.log(res.data)
+                if (res.data.createdUser){
+                    alert("User created successfully.");
+                    this.setState({ username: "", password: "", confirmPassword: "", formSubmitted: true });
+                }
+                else {
+                    alert("Username is taken.");
+                    console.log(res);
+                }
+            }).catch(function(error){
+                console.log(error);
+            })
         }
     };
 

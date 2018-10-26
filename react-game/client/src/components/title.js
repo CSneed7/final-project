@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import '../App.css';
+import API from '../api';
 
 class Title extends Component {
+    state = {
+        formSubmitted: false
+    }
+    
+    handleFormSubmit = event => {
+        event.preventDefault();
+            API.Logout({username: this.state.username, password: this.state.password}).then(res => {
+            })
+    };
     render() {
         return (
             <div className="mainPage">
@@ -15,7 +25,10 @@ class Title extends Component {
                 <br></br>
                 <Link to="/leaderboard" className={window.location.pathname === "/leaderboard" ? "button" : "button"}>Leaderboard</Link>
                 <br></br>
-                <Link to="/" className={window.location.pathname === "/" ? "button" : "button"}>Log Out</Link>
+                <button className="button" type="submit"
+                    onClick={this.handleFormSubmit}>
+                    Log Out
+                </button>
             </div>
         );
     }

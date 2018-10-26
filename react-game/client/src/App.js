@@ -9,18 +9,27 @@ import Title from "./components/title";
 import API from "./api"
 import Leaderboard from "./components/leaderboard";
 
-const App = () => (
-  <Router>
-    <div>
-      <Route exact path="/" component={Home} />
-      <Route exact path="/login" component={Login} />
-      <Route exact path="/signup" component={Register} />
-      <Route exact path="/game" component={Game} />
-      <Route exact path="/titlescreen" component={Title} />
-      <Route exact path="/howtoplay" component={Instructions} />
-      <Route exact path="/leaderboard" component={Leaderboard} />
-    </div>
-  </Router>
-);
+class App extends React.Component {
+  state = {
+    user_id: false
+  }
+
+  setUser = User => {this.setState({user_id: User})}
+  render() {
+    return (
+      < Router >
+        <div>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/login" render={() => <Login setUser={this.setUser}/>} />
+          <Route exact path="/signup" render={Register} />
+          <Route exact path="/game" component={Game} />
+          <Route exact path="/titlescreen" component={Title} />
+          <Route exact path="/howtoplay" component={Instructions} />
+          <Route exact path="/leaderboard" render={() => <Leaderboard User={this.state.user_id}/>} />
+        </div>
+      </Router >
+    )
+  }
+}
 
 export default App;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import '../App.css';
+import API from '../api';
 
 
 class Login extends Component {
@@ -8,6 +9,11 @@ class Login extends Component {
         username: "",
         password: "",
         formSubmitted: false
+    }
+
+    constructor (props){
+        super(props)
+        this.setUser = props.setUser
     }
 
     handleChange = event => {
@@ -24,14 +30,26 @@ class Login extends Component {
             alert("Please fill out all fields.")
         }
         else {
-            alert("User logged in successfully.");
-            this.setState({ username: "", password: "", formSubmitted: true});
+            API.Login({ username: this.state.username, password: this.state.password }).then(res => {
+                console.log(res);
+                if (res.data.isAuthenticated) {
+                    alert("Login successful.");
+                    this.setUser(res.data.userId)
+                    this.setState({ username: "", password: "", formSubmitted: true });
+                }
+                else if (!res.isAuthenticated){
+                    alert("Login failed.");
+                    console.log(res);
+                }
+            }).catch(function(error){
+                console.log(error);
+            })
         }
     };
     render() {
         if (this.state.formSubmitted) {
             return <Redirect to="/titlescreen" />
-          }
+        }
         return (
             <div className="mainPage">
                 <div className="container">

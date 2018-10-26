@@ -10,7 +10,12 @@ const User = new Schema({
 	password: {
 		type: String,
 		allowNull: false
-	} 
+	},
+	score: {
+		type: Number,
+		allowNull: false,
+		default: 0
+	}
 	//you may replace this 'name' field with anything you like
 });
 //passport-local-mongoose creates a 'username' and some 'password' fields for you
