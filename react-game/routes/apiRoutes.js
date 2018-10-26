@@ -16,7 +16,7 @@ module.exports = function (passport) {
 	})
 
 	router.get("/userscore", function(req, res){
-		db.User.find()
+		db.User.find({ _id: req.body.user_id })
 	})
 	return router;
 };

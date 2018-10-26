@@ -11,6 +11,11 @@ class Register extends Component {
         formSubmitted: false
     }
 
+    constructor (props){
+        super(props)
+        this.setUser = props.setUser
+    }
+
     handleChange = event => {
         const { name, value } = event.target;
 
@@ -33,6 +38,7 @@ class Register extends Component {
                 console.log(res.data)
                 if (res.data.createdUser){
                     alert("User created successfully.");
+                    this.setUser(res.data.userId)
                     this.setState({ username: "", password: "", confirmPassword: "", formSubmitted: true });
                 }
                 else {
