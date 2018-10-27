@@ -29,7 +29,7 @@ class Game extends Component {
     monsterSpeed: 600,
     gameTimer: true,
     score: 0,
-    currentLevel: 8,
+    currentLevel: 1,
     mapClass: false,
     monsterTimer: 0,
     timer: 30,
