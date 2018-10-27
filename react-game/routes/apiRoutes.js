@@ -22,7 +22,7 @@ module.exports = function (passport) {
 	})
 
 	router.get("/allscore", function (req, res) {
-		var query = db.User.find({})
+		var query = db.User.find().sort([['score', 'descending']])
 		query.select('username score')
 		query.exec(function (err, data) {
 			return res.json(data)
@@ -30,10 +30,12 @@ module.exports = function (passport) {
 	})
 
 	router.post("/postScore/:userId", function (req, res) {
-		db.User.findByIdAndUpdate({ _id: req.params.userId }).then(data => {
+		console.log(req.body)
+		db.User.findOneAndUpdate({ _id: req.params.userId }, {$set: { score: req.body.score}}, {new: true}).then(data => {
+			console.log(data)
 			return res.json(data)
 		})
-	})
+	}) 
 
 	return router;
 };

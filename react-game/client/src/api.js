@@ -19,7 +19,7 @@ export default {
     allScore: function(info){
         return axios.get("/api/allscore", info);
     },
-    postScore: function(info){
-        return axios.get("/api/postScore", info);
+    postScore: function(info, scoring){
+        return axios.post("/api/postScore/" + info, scoring);
     },
 }

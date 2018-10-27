@@ -23,32 +23,32 @@ import API from './api';
 
 class Game extends Component {
   state = {
+    User: false,
     tiles: [],
     monsters: [],
     monsterSpeed: 600,
     gameTimer: true,
     score: 0,
-    currentLevel: 1,
+    currentLevel: 8,
     mapClass: false,
     monsterTimer: 0,
     timer: 30,
     gameComplete: false,
-    User: false
   }
 
-  constructor (props){
+  constructor(props){
     super(props)
-    this.setUser = props.setUser
-}
+    this.state.User = props.User
+  }
 
   baseState = this.state
   componentDidMount() {
     this.init();
-    API.postScore()
   }
 
   init = () => {
     console.log("init");
+    console.log(this.state.User)
     console.log(this.state.gameTimer);
     const currentLevel = this.state.currentLevel;
     let startingTiles;
@@ -383,6 +383,13 @@ class Game extends Component {
     this.setState({
       score: score
     })
+    API.postScore(this.state.User, {score: this.state.score}).then(res => {
+      console.log(res)
+      res.data.score = this.state.score
+      this.setState({
+        score: res.data.score
+      })
+    }).catch(err => console.log(err))
   }
 
   collectDiamond = () => {
@@ -391,6 +398,11 @@ class Game extends Component {
     this.setState({
       score: score
     })
+    API.postScore(this.state.User, this.state.score).then(res => {
+      this.setState({
+        score: this.state.score
+      })
+    }).catch(err => console.log(err))
   }
 
   changeLevel = () => {
@@ -403,12 +415,11 @@ class Game extends Component {
       difficultyUp = 200;
     }
     if (this.state.currentLevel === 8){
-      alert("You won!!! Congrats noob!")
       this.setState({
         gameTimer: false,
         gameComplete: true
       })
-      return <Redirect to="/leaderboard" />
+       return <Redirect to="/leaderboard" />
     }
     let changeLevel = this.state.currentLevel + 1;
     console.log(this.state.monsterTimer);

@@ -8,7 +8,7 @@ class Login extends Component {
     state = {
         username: "",
         password: "",
-        formSubmitted: false
+        formSubmitted: false,
     }
 
     constructor (props){
