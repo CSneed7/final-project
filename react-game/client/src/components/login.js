@@ -37,7 +37,7 @@ class Login extends Component {
                     this.setUser(res.data.userId)
                     this.setState({ username: "", password: "", formSubmitted: true });
                 }
-                else if (!res.isAuthenticated){
+                else if (res.status === 401){
                     alert("Login failed.");
                     console.log(res);
                 }

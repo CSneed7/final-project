@@ -533,13 +533,13 @@ class Game extends Component {
       }
       clearInterval(this.state.levelTimer)
     }
-    else if (this.state.score <= 0) {
-      playerDied = 0
-      this.setState({
-        gameTimer: false,
-        score: playerDied
-      });
-    }
+    // else if (this.state.score <= 0) {
+    //   playerDied = 0
+    //   this.setState({
+    //     gameTimer: false,
+    //     score: playerDied
+    //   });
+    // }
     console.log(this.state);
   }
 
@@ -555,6 +555,14 @@ class Game extends Component {
     if (!this.state.gameTimer) {
       this.init();
     }
+  }
+
+  componentWillUnmount(){
+    window.clearInterval(this.state.levelTimer)
+    window.clearTimeout(this.state.monsterTimer);
+    this.setState({
+      gameTimer: false
+    })
   }
 
   keyHandler = (event) => {

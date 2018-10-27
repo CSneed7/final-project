@@ -18,10 +18,16 @@ module.exports = function (passport) {
 	router.get("/userscore/:userId", function(req, res){
 		console.log(req.params.userId)
 		db.User.findOne({ _id: req.params.userId }).then(data => {
-			console.log(data.score)
+			return res.json(data)
 		})
 	})
 
+	router.get("/allscore", function(req, res){
+		console.log(req.body.userId)
+		db.User.find({}).then(data => {
+			return res.json(data)
+		})
+	})
 
 	return router;
 };

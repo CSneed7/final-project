@@ -15,5 +15,8 @@ export default {
     },
     userScore: function(info){
         return axios.get("/api/userscore/" + info);
+    },
+    allScore: function(info){
+        return axios.get("/api/allscore", info);
     }
 }
