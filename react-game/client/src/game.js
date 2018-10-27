@@ -18,6 +18,7 @@ import BK from './monsters/Blackknight';
 import Skeleton from './monsters/Skeleton';
 import { tiles8 } from './levels/level_8';
 import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
+import API from './api';
 
 
 class Game extends Component {
@@ -31,12 +32,19 @@ class Game extends Component {
     mapClass: false,
     monsterTimer: 0,
     timer: 30,
-    gameComplete: false
+    gameComplete: false,
+    User: false
   }
+
+  constructor (props){
+    super(props)
+    this.setUser = props.setUser
+}
 
   baseState = this.state
   componentDidMount() {
     this.init();
+    API.postScore()
   }
 
   init = () => {
@@ -556,6 +564,7 @@ class Game extends Component {
       this.init();
     }
   }
+
 
   componentWillUnmount(){
     window.clearInterval(this.state.levelTimer)

@@ -8,7 +8,6 @@ class Leaderboard extends Component {
     User: false,
     score: 0,
     username: false,
-    scores: 0,
     usernames: false,
   }
 
@@ -27,8 +26,7 @@ class Leaderboard extends Component {
     API.allScore().then(res => {
       console.log(res)
       this.setState({
-        scores: res.data.score,
-        usernames: res.data.username
+        usernames: res.data
       })
        console.log("work pls")
     }).catch(err => console.log(err))
@@ -39,7 +37,9 @@ class Leaderboard extends Component {
       <div className="mainPage">
         <h1>Whose on top!</h1>
         <br></br>
-        <div>{this.state.usernames}: {this.state.scores}</div>
+        {this.state.usernames && 
+        this.state.usernames.map(user => <div className="allscores">{user.username + ": " + user.score}</div>)
+        }
         <br></br>
         <div>{this.state.username}: {this.state.score}</div>
         <Link to="/titlescreen" className={window.location.pathname === "/titlescreen" ? "button" : "button"}>Back</Link>

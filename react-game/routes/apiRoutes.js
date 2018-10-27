@@ -15,16 +15,22 @@ module.exports = function (passport) {
 		})(req, res, next);
 	})
 
-	router.get("/userscore/:userId", function(req, res){
-		console.log(req.params.userId)
+	router.get("/userscore/:userId", function (req, res) {
 		db.User.findOne({ _id: req.params.userId }).then(data => {
 			return res.json(data)
 		})
 	})
 
-	router.get("/allscore", function(req, res){
-		console.log(req.body.userId)
-		db.User.find({}).then(data => {
+	router.get("/allscore", function (req, res) {
+		var query = db.User.find({})
+		query.select('username score')
+		query.exec(function (err, data) {
+			return res.json(data)
+		})
+	})
+
+	router.post("/postScore/:userId", function (req, res) {
+		db.User.findByIdAndUpdate({ _id: req.params.userId }).then(data => {
 			return res.json(data)
 		})
 	})

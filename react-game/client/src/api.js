@@ -18,5 +18,8 @@ export default {
     },
     allScore: function(info){
         return axios.get("/api/allscore", info);
-    }
+    },
+    postScore: function(info){
+        return axios.get("/api/postScore", info);
+    },
 }
