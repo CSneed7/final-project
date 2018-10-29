@@ -37,11 +37,15 @@ class Leaderboard extends Component {
       <div className="mainPage">
         <h1>Whose on top!</h1>
         <br></br>
+        <div className="allScores">
         {this.state.usernames && 
-        this.state.usernames.map(user => <div className="allscores">{user.username + ": " + user.score}</div>)
+        this.state.usernames.map(user => <div className="scores">{user.username + ": " + user.score}</div>)
         }
+        </div>
         <br></br>
-        <div>{this.state.username}: {this.state.score}</div>
+        <h2>Your Score:</h2>
+        <div className="yourScore">{this.state.username}: {this.state.score}</div>
+        <br></br>
         <Link to="/titlescreen" className={window.location.pathname === "/titlescreen" ? "button" : "button"}>Back</Link>
 
       </div>
