@@ -398,9 +398,10 @@ class Game extends Component {
     this.setState({
       score: score
     })
-    API.postScore(this.state.User, this.state.score).then(res => {
+    API.postScore(this.state.User, {score: this.state.score}).then(res => {
+      res.data.score = this.state.score
       this.setState({
-        score: this.state.score
+        score: res.data.score
       })
     }).catch(err => console.log(err))
   }
@@ -552,13 +553,14 @@ class Game extends Component {
       }
       clearInterval(this.state.levelTimer)
     }
-    // else if (this.state.score <= 0) {
-    //   playerDied = 0
-    //   this.setState({
-    //     gameTimer: false,
-    //     score: playerDied
-    //   });
-    // }
+    else if (this.state.score <= 0) {
+      playerDied = 0
+      this.setState({
+        gameTimer: false,
+        score: playerDied
+      });
+      clearInterval(this.state.levelTimer)
+    }
     console.log(this.state);
   }
 
