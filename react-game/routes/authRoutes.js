@@ -23,12 +23,12 @@ module.exports = function (passport) {
 	});
 
 	router.post("/signup", function (req, res) {
-		const newUser = req.body;
-		User.find({ username: newUser.username }).then(data => {
+		// const newUser = req.body;
+		User.find({ username: req.body.username }).then(data => {
 			console.log(data.length);
 			if (data.length === 0) {
 				console.log(data)
-				User.register(newUser, newUser.password, (err, user) => {
+				User.register(new User({username: req.body.username}), req.body.password, (err, user) => {
 					if (err) { return res.json(err.message); }
 					res.json({
 						userId: user._id,
@@ -49,7 +49,7 @@ module.exports = function (passport) {
 		// console.log(req.user);
 		const oldUser = req.body;
 		User.findOne({ username: oldUser.username }).then(data => {
-			if (oldUser.password === data.password) {
+			if (oldUser.hash === data.hash) {
 				res.json({
 					userId: req.user._id,
 					username: req.user.username,
