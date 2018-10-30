@@ -30,9 +30,7 @@ module.exports = function (passport) {
 	})
 
 	router.post("/postScore/:userId", function (req, res) {
-		console.log(req.body)
 		db.User.findOneAndUpdate({ _id: req.params.userId }, {$set: { score: req.body.score}}, {new: true}).then(data => {
-			console.log(data)
 			return res.json(data)
 		})
 	}) 

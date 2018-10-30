@@ -379,12 +379,10 @@ class Game extends Component {
 
   collectCoin = () => {
     let score = this.state.score + 100;
-    console.log(score);
     this.setState({
       score: score
     })
     API.postScore(this.state.User, {score: this.state.score}).then(res => {
-      console.log(res)
       res.data.score = this.state.score
       this.setState({
         score: res.data.score
@@ -394,7 +392,6 @@ class Game extends Component {
 
   collectDiamond = () => {
     let score = this.state.score + 1000;
-    console.log(score);
     this.setState({
       score: score
     })

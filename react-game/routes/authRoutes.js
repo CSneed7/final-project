@@ -56,6 +56,9 @@ module.exports = function (passport) {
 					isAuthenticated: true
 				});
 			}
+			else if(data.status === 401){
+				res.json("Invalid Username and/or Password.")
+			}
 			else {
 				res.json("Username and/or password did not match.");
 			}
